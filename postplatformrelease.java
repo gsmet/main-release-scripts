@@ -113,7 +113,8 @@ public class postplatformrelease implements Runnable {
         GHRelease release = findRelease(repository, version);
 
         if (release != null) {
-            release.update().body(createReleaseDescription(issues)).update();
+            // the release might have been created by JReleaser so we make sure it is named after the version
+            release.update().name(version).body(createReleaseDescription(issues)).update();
             System.out.println("Release " + version + " updated - " + release.getHtmlUrl());
             return;
         }
