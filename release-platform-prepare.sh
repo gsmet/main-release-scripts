@@ -42,6 +42,7 @@ git checkout -b quarkus-${VERSION}
 ./update-quarkus-version.sh ${VERSION}
 git add .
 git commit -m "Upgrade to Quarkus ${VERSION}"
-git push origin quarkus-${VERSION}
+# Force push so that retrying the step works if the branch has been pushed by a previous attempt
+git push --force origin quarkus-${VERSION}
 
 popd
